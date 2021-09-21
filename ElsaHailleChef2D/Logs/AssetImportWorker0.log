@@ -184,3 +184,59 @@ Received Import Request.
 Start importing Assets/Scenes/Main.unity using Guid(94a49818a10f54a5f81fead42e0be845) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8fc197ae52abdcafb7b5c92dfe39efc7') in 0.003377 seconds 
   Import took 0.007715 seconds .
 
+========================================================================
+Received Import Request.
+  Time since last request: 164.972179 seconds.
+  path: Assets/Scenes/Sprites
+  artifactKey: Guid(282fc14713f44499cbb3ff458518bf2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Sprites using Guid(282fc14713f44499cbb3ff458518bf2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '27684d13f3723c543d8428b60e5019b7') in 0.001900 seconds 
+  Import took 0.007658 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001395 seconds.
+  path: Assets/Scenes/Sprites
+  artifactKey: Guid(282fc14713f44499cbb3ff458518bf2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Sprites using Guid(282fc14713f44499cbb3ff458518bf2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '27684d13f3723c543d8428b60e5019b7') in 0.001712 seconds 
+  Import took 0.008236 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.785530 seconds.
+  path: Assets/Scenes/Sounds
+  artifactKey: Guid(159e0fc72f0944ee1b94e22c491373d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Sounds using Guid(159e0fc72f0944ee1b94e22c491373d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da99aa8f931adeffd2c58f8877a74b0b') in 0.001641 seconds 
+  Import took 0.006452 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 17.314112 seconds.
+  path: Assets/Scenes/Sprites/Chef W1.png
+  artifactKey: Guid(95bd376f36b9b4c12b92330e150a7382) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Sprites/Chef W1.png using Guid(95bd376f36b9b4c12b92330e150a7382) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22482f7bf828635cc3323f6e6a2cdb75') in 0.436846 seconds 
+  Import took 0.442392 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000247 seconds.
+  path: Assets/Scenes/Sprites/Chef W2.png
+  artifactKey: Guid(6a0148e397a004b4ab58f601ab9aed66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Sprites/Chef W2.png using Guid(6a0148e397a004b4ab58f601ab9aed66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f19dc5483fadc5a339292f770856443') in 0.012824 seconds 
+  Import took 0.016384 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 25.089685 seconds.
+  path: Assets/Scenes/Sprites/Chef W2.png
+  artifactKey: Guid(6a0148e397a004b4ab58f601ab9aed66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Sprites/Chef W2.png using Guid(6a0148e397a004b4ab58f601ab9aed66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '668b4be896a286bdf7d37a238e07254a') in 0.008246 seconds 
+  Import took 0.016027 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 353.422761 seconds.
+  path: Assets/Scenes/Sprites/Chef W2.png
+  artifactKey: Guid(6a0148e397a004b4ab58f601ab9aed66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Sprites/Chef W2.png using Guid(6a0148e397a004b4ab58f601ab9aed66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76bdd52708d788b4554153c03aaf1910') in 0.058042 seconds 
+  Import took 0.062248 seconds .
+
