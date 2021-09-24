@@ -46,9 +46,9 @@ public class ChefScript : MonoBehaviour
          if (Input.GetKey(KeyCode.Space))
         {
             Sprite jump = jumpin[Random.Range(0, jumpin.Length)];
-            //mySpriteRenderer.sprite = jump;
-            //mySpriteRenderer.flipX = false;
-            //movementHorizontal = speed;
+            mySpriteRenderer.sprite = jump;
+            mySpriteRenderer.flipX = false;
+            movementVertical = speed;
         }
 
 
