@@ -9,7 +9,8 @@ public class ChefScript : MonoBehaviour
     private Rigidbody2D rb2d;
     private SpriteRenderer mySpriteRenderer;
 
-    public Sprite[] walking = new Sprite[5];
+    public Sprite[] walking = new Sprite[4];
+    public Sprite[] jumpin = new Sprite[2];
 
 
 
@@ -42,7 +43,15 @@ public class ChefScript : MonoBehaviour
             mySpriteRenderer.flipX = false;
             movementHorizontal = speed;
         }
-        
+         if (Input.GetKey(KeyCode.Space))
+        {
+            Sprite jump = jumpin[Random.Range(0, jumpin.Length)];
+            //mySpriteRenderer.sprite = jump;
+            //mySpriteRenderer.flipX = false;
+            //movementHorizontal = speed;
+        }
+
+
 
         rb2d.velocity = new Vector2(movementHorizontal, movementVertical);
     }
