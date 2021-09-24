@@ -4,22 +4,22 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -7747869830457044387
-    second: food-MELLE_0
+    second: croissant
   - first:
       213: 7642482335951642647
-    second: food-MELLE_1
+    second: blueberry-cupcake
   - first:
       213: 6767067722477270392
-    second: food-MELLE_2
+    second: donut
   - first:
       213: 2797135804184593975
-    second: food-MELLE_3
+    second: jello
   - first:
       213: -8533122701027426009
-    second: food-MELLE_4
+    second: cake
   - first:
       213: 24165305340803129
-    second: food-MELLE_5
+    second: cracker-maybe
   - first:
       213: -7418364959831777158
     second: food-MELLE_6
@@ -53,7 +53,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -67,7 +67,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -124,7 +124,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: food-MELLE_0
+      name: croissant
       rect:
         serializedVersion: 2
         x: 1
@@ -145,7 +145,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: food-MELLE_1
+      name: blueberry-cupcake
       rect:
         serializedVersion: 2
         x: 34
@@ -166,7 +166,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: food-MELLE_2
+      name: donut
       rect:
         serializedVersion: 2
         x: 65
@@ -187,7 +187,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: food-MELLE_3
+      name: jello
       rect:
         serializedVersion: 2
         x: 97
@@ -208,7 +208,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: food-MELLE_4
+      name: cake
       rect:
         serializedVersion: 2
         x: 1
@@ -229,7 +229,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: food-MELLE_5
+      name: cracker-maybe
       rect:
         serializedVersion: 2
         x: 33
