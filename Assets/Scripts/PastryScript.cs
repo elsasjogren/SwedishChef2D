@@ -5,6 +5,9 @@ using UnityEngine;
 public class PastryScript : MonoBehaviour
 {
     public float startY;
+    public float bobSpeed;
+    public float bobHeight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +18,7 @@ public class PastryScript : MonoBehaviour
     void Update()
     {
         // make the pastry bounce up n down
-        Vector3 bob = new Vector3(transform.position.x, startY + 0.35f*Mathf.Sin(1.5f*Time.realtimeSinceStartup), 0);
+        Vector3 bob = new Vector3(transform.position.x, startY + bobHeight*Mathf.Sin(bobSpeed*Time.realtimeSinceStartup), 0);
         //sin = Mathf.Sin(0.5f * Time.deltaTime);
         transform.position = bob;
     }

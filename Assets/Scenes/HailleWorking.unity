@@ -474,6 +474,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: food-MELLE_0
       objectReference: {fileID: 0}
+    - target: {fileID: 3220397234505597464, guid: cf1f7034b86b46c428a9747449002306, type: 3}
+      propertyPath: bobSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3220397234505597464, guid: cf1f7034b86b46c428a9747449002306, type: 3}
+      propertyPath: bobHeight
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 4061793309924052582, guid: cf1f7034b86b46c428a9747449002306, type: 3}
       propertyPath: m_RootOrder
       value: 2
