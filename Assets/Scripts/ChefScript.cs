@@ -6,6 +6,8 @@ public class ChefScript : MonoBehaviour
 {
     public float speed;
 
+    public bool isGrounded = false;
+
     private Rigidbody2D rb2d;
     private SpriteRenderer mySpriteRenderer;
 
@@ -24,6 +26,7 @@ public class ChefScript : MonoBehaviour
     void Update()
     {
         // Using RigidBody2D physics (by setting its velocity) for movement with Up-, Down-, Left-, Right-Arrow to move
+        Jump();
 
         float movementHorizontal = 0;
         float movementVertical = 0;
@@ -43,17 +46,16 @@ public class ChefScript : MonoBehaviour
             mySpriteRenderer.flipX = false;
             movementHorizontal = speed;
         }
-         if (Input.GetKey(KeyCode.Space))
-        {
-            Sprite jump = jumpin[Random.Range(0, jumpin.Length)];
-            mySpriteRenderer.sprite = jump;
-            mySpriteRenderer.flipX = false;
-            movementVertical = speed;
-        }
-
-
 
         rb2d.velocity = new Vector2(movementHorizontal, movementVertical);
     }
 
-}
+    void Jump()
+    {
+        if (Input.GetKey(KeyCode.Space) && isGrounded == true)
+        {
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 5f), ForceMode2D.Impulse);
+        }
+    }
+
+};
