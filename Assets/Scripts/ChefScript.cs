@@ -29,7 +29,7 @@ public class ChefScript : MonoBehaviour
         Jump();
 
         float movementHorizontal = 0;
-        float movementVertical = 0;
+ 
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -47,14 +47,17 @@ public class ChefScript : MonoBehaviour
             movementHorizontal = speed;
         }
 
-        rb2d.velocity = new Vector2(movementHorizontal, movementVertical);
+
+        rb2d.velocity = new Vector2(movementHorizontal, rb2d.velocity.y);
     }
 
     void Jump()
     {
-        if (Input.GetKey(KeyCode.Space) && isGrounded == true)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 5f), ForceMode2D.Impulse);
+            float movementVertical = 5f;
+            
+            rb2d.velocity = new Vector2(rb2d.velocity.x, movementVertical);
         }
     }
 
