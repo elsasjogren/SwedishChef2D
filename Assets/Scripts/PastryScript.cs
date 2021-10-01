@@ -5,13 +5,12 @@ using UnityEngine;
 public class PastryScript : MonoBehaviour
 {
     public float startY;
-    public float bobSpeed;
-    public float bobHeight;
+    public float bobSpeed = 2.0f;
+    public float bobHeight = 0.25f;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        startY = transform.position.y;
+        startY = Mathf.RoundToInt(transform.position.y);
     }
 
     // Update is called once per frame

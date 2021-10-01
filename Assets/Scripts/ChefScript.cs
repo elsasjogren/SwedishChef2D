@@ -14,6 +14,8 @@ public class ChefScript : MonoBehaviour
     public Sprite[] walking = new Sprite[4];
     public Sprite[] jumpin = new Sprite[2];
 
+    // true if currently walking
+    private bool isWalking;
 
 
     void Start()
@@ -25,40 +27,73 @@ public class ChefScript : MonoBehaviour
 
     void Update()
     {
-        // Using RigidBody2D physics (by setting its velocity) for movement with Up-, Down-, Left-, Right-Arrow to move
-        Jump();
 
         float movementHorizontal = 0;
- 
 
+        // Using RigidBody2D physics (by setting its velocity) for movement with Up-, Down-, Left-, Right-Arrow to move
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            Sprite leftSprite = walking[Random.Range(0, walking.Length)];
-            mySpriteRenderer.sprite = leftSprite;
+            //Sprite leftSprite = walking[Random.Range(0, walking.Length)];
+            //mySpriteRenderer.sprite = leftSprite;
             mySpriteRenderer.flipX = true;
+ 
             // x component is - * speed
             movementHorizontal = -speed;
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            Sprite rightSprite = walking[Random.Range(0, walking.Length)];
-            mySpriteRenderer.sprite = rightSprite;
+            //Sprite rightSprite = walking[Random.Range(0, walking.Length)];
+            //mySpriteRenderer.sprite = rightSprite;
             mySpriteRenderer.flipX = false;
+
             movementHorizontal = speed;
         }
 
+        // Jump
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            float movementVertical = 5f;
+
+            rb2d.velocity = new Vector2(rb2d.velocity.x, movementVertical);
+        }
+
+        // animate if moving, stop if not
+        if (movementHorizontal == 0)
+        {
+            StopAllCoroutines();
+            isWalking = false;
+        } else { 
+            if (!isWalking) 
+            {
+                StartCoroutine(walkingAnimation(0.1f));
+                isWalking = true;
+            }
+        }
+        
 
         rb2d.velocity = new Vector2(movementHorizontal, rb2d.velocity.y);
     }
 
-    void Jump()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (collision.CompareTag("Item"))
         {
-            float movementVertical = 5f;
-            
-            rb2d.velocity = new Vector2(rb2d.velocity.x, movementVertical);
+            // collect the croissant
+            UIScript.IncreaseScore();  // doesnt work rn :((((
+            Destroy(collision.gameObject);
         }
     }
 
+    // animate the walking with timePerFrame seconds between each frame
+    IEnumerator walkingAnimation(float timePerFrame)
+    {
+        for(int i = 0; i < walking.Length; i++)
+        {
+            yield return new WaitForSeconds(timePerFrame);
+            mySpriteRenderer.sprite = walking[i];
+        }
+
+        // loop
+        StartCoroutine(walkingAnimation(timePerFrame));
+    }
 };
