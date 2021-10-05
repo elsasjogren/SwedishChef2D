@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class Lives : MonoBehaviour
 {
     static public float hearts;
-    public Sprite[] lives;
-    public Sprite fullHeart;
+    public Sprite[] lives = new Sprite[3];
+    public Sprite halfFullHeart;
     public Sprite emptyHeart;
 
     void Start()
