@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChefScript : MonoBehaviour
+public class ChefScript : CharacterInheritance
 {
     public float speed;
-
-    public bool isGrounded = false;
 
     private Rigidbody2D rb2d;
     private SpriteRenderer mySpriteRenderer;
@@ -30,7 +28,7 @@ public class ChefScript : MonoBehaviour
 
         float movementHorizontal = 0;
 
-        // Using RigidBody2D physics (by setting its velocity) for movement with Up-, Down-, Left-, Right-Arrow to move
+        
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             //Sprite leftSprite = walking[Random.Range(0, walking.Length)];

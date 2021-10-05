@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MonsterScript : MonoBehaviour
+public class MonsterScript : CharacterInheritance
 {
     private Rigidbody2D rb2d;
     private SpriteRenderer mySpriteRenderer;

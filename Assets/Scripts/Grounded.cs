@@ -4,24 +4,20 @@ using UnityEngine;
 
 public class Grounded : MonoBehaviour
 {
-    GameObject Player;
+    GameObject character;
+    CharacterInheritance groundedChar;
     
     void Start()
     {
-        Player = gameObject.transform.parent.gameObject;
-    }
-
-    
-    void Update()
-    {
-        
+        character = gameObject.transform.parent.gameObject;
+        groundedChar = character.GetComponent<CharacterInheritance>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Ground"))
         {
-            Player.GetComponent<ChefScript>().isGrounded = true;
+            groundedChar.isGrounded = true;
         }
     }
 
@@ -29,7 +25,7 @@ public class Grounded : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ground"))
         {
-            Player.GetComponent<ChefScript>().isGrounded = false ;
+            groundedChar.isGrounded = false ;
         }
     }
 }

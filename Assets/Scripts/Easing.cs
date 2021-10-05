@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class Easing : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        
+        //while(time < hurtTimer / hurtTimer)
+        //{
+        //    float normalisedTime = Time / hurtTimer;
+        //    float scale = bounchAnimation.Evaluate(normalisedTime);
+        //    //float scale = Easing.Bounce.In(normalisedTime);
+        //    transform.localScale = new Vector3(scale, scale, scale);
+        //    timer += Time.deltaTime;
+        //    yeild return null;
+
+        //}
+
+        //transform.localScale = new Vector3(1, 1, 1);
     }
 }
