@@ -9,8 +9,8 @@ public class MonsterScript : MonoBehaviour
     private SpriteRenderer mySpriteRenderer;
 
     public Sprite[] jumpSprite = new Sprite[5];
-    public AudioClip[] attackSprite = new AudioClip[6];
-    public AudioClip[] destroySprite = new AudioClip[7];
+    public Sprite[] attackSprite = new Sprite[6];
+    public Sprite[] destroySprite = new Sprite[7];
 
     public float monsterSpeed;
 

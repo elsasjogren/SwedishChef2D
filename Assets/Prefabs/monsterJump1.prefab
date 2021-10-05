@@ -151,18 +151,18 @@ MonoBehaviour:
   - {fileID: -6199678358516529221, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
   - {fileID: 5116084446230471435, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
   attackSprite:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7929751021075451739, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
+  - {fileID: -80066363666632943, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
+  - {fileID: 2156256049751379566, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
+  - {fileID: -7731062641392183755, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
+  - {fileID: 2918077705451735570, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
+  - {fileID: 6081644748365158183, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
   destroySprite:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: -5129101743719149495, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
+  - {fileID: 7753363963529279963, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
+  - {fileID: 5246254858356113122, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
+  - {fileID: 4260451495458643948, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
+  - {fileID: 7054441585288595629, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
+  - {fileID: 7577558164117523207, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
+  - {fileID: 7434196454575733728, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
   monsterSpeed: 0
