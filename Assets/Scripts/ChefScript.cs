@@ -31,19 +31,12 @@ public class ChefScript : CharacterInheritance
         
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            //Sprite leftSprite = walking[Random.Range(0, walking.Length)];
-            //mySpriteRenderer.sprite = leftSprite;
             mySpriteRenderer.flipX = true;
- 
-            // x component is - * speed
             movementHorizontal = -speed;
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            //Sprite rightSprite = walking[Random.Range(0, walking.Length)];
-            //mySpriteRenderer.sprite = rightSprite;
             mySpriteRenderer.flipX = false;
-
             movementHorizontal = speed;
         }
 
