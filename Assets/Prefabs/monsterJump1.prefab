@@ -176,7 +176,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &6340417409101084056
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -238,3 +238,10 @@ MonoBehaviour:
   - {fileID: 7577558164117523207, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
   - {fileID: 7434196454575733728, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
   monsterSpeed: 0
+  fallOffTestLeft: 0
+  fallOffTestRight: 0
+  speed: 3
+  length: 0.1
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 1
