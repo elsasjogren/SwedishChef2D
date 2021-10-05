@@ -191,6 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGrounded: 0
   speed: 3
+  jumpForce: 6
   walking:
   - {fileID: 7271486832701426764, guid: 6a0148e397a004b4ab58f601ab9aed66, type: 3}
   - {fileID: 3676964441073575191, guid: 6a0148e397a004b4ab58f601ab9aed66, type: 3}

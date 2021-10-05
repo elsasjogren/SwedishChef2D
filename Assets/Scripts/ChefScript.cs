@@ -9,12 +9,13 @@ public class ChefScript : CharacterInheritance
     private Rigidbody2D rb2d;
     private SpriteRenderer mySpriteRenderer;
 
+    public float jumpForce;
     public Sprite[] walking = new Sprite[4];
     public Sprite[] jumpin = new Sprite[2];
 
+
     // true if currently walking
     private bool isWalking;
-
 
     void Start()
     {
@@ -50,9 +51,7 @@ public class ChefScript : CharacterInheritance
         // Jump
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            float movementVertical = 5f;
-
-            rb2d.velocity = new Vector2(rb2d.velocity.x, movementVertical);
+            rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
         }
 
         // animate if moving, stop if not
@@ -67,8 +66,7 @@ public class ChefScript : CharacterInheritance
                 isWalking = true;
             }
         }
-        
-
+       
         rb2d.velocity = new Vector2(movementHorizontal, rb2d.velocity.y);
     }
 

@@ -12,9 +12,9 @@ public class CameraScript : MonoBehaviour
     //public float maxY;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
+        transform.position = new Vector3(minX, Player.transform.position.y, -10);
     }
 
     // Update is called once per frame
@@ -23,6 +23,17 @@ public class CameraScript : MonoBehaviour
         if(Player.transform.position.x >= minX && transform.position.x <= maxX)
         {
             transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y, -10);
+        } else
+        {
+            if(Player.transform.position.x < minX)
+            {
+                transform.position = new Vector3(minX, Player.transform.position.y, -10);
+            } else
+            {
+                transform.position = new Vector3(maxX, Player.transform.position.y, -10);
+            }
         }
+
+        
     }
 }
