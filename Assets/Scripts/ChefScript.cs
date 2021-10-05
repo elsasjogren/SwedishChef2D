@@ -85,4 +85,30 @@ public class ChefScript : CharacterInheritance
         // loop
         StartCoroutine(walkingAnimation(timePerFrame));
     }
+
+
+    protected override void Hurt(Vector3 impactDirection)
+    {
+        if (Mathf.Abs(impactDirection.x) > Mathf.Abs(impactDirection.y))
+        {
+            TakeDamage();
+        }
+        else
+        {
+            if (impactDirection.y > 0.0f)
+            {
+                TakeDamage();
+            }
+            Vector2 vel = rb2d.velocity;
+            //vel.y = jumpforce;
+            rb2d.velocity = vel;
+        }
+    }
+
+
+    public void TakeDamage()
+    {
+        Debug.Log("Damage Taken to player");
+        GetComponent<Lives>().Damaged();
+    }
 };
