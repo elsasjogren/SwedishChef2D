@@ -191,7 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGrounded: 0
   speed: 3
-  jumpForce: 6
+  jumpForce: 10
   walking:
   - {fileID: 7271486832701426764, guid: 6a0148e397a004b4ab58f601ab9aed66, type: 3}
   - {fileID: 3676964441073575191, guid: 6a0148e397a004b4ab58f601ab9aed66, type: 3}
@@ -213,6 +213,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.09664512}
-  m_Size: {x: 1, y: 1.4467096}
+  m_Offset: {x: -0.033177376, y: -0.049337387}
+  m_Size: {x: 0.72130394, y: 1.3670831}
   m_Direction: 0

@@ -25,7 +25,7 @@ public class Grounded : MonoBehaviour
     {
         if (collider.CompareTag("Ground"))
         {
-            groundedChar.isGrounded = true;
+            groundedChar.isGrounded = false;
         }
     }
 }
