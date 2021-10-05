@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MonsterScript : CharacterInheritance
 {
+    public bool FindPlayer;
+
     private Rigidbody2D rb2d;
     private SpriteRenderer mySpriteRenderer;
 
@@ -31,12 +33,9 @@ public class MonsterScript : CharacterInheritance
 
     private void Update()
     {
-        int count = 0;
         Vector2 vel = rb2d.velocity;
         vel.x = monsterSpeed * directionMonster;
         rb2d.velocity = vel;
-        mySpriteRenderer.sprite = jumpSprite[count];
-        count++;
         monsterDirection();
         StartCoroutine(walkingAnimation(0.5f));  // animate
     }
@@ -58,22 +57,6 @@ public class MonsterScript : CharacterInheritance
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    //on collision with player should take away one of the players three/five lives 
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            if (Lives.hearts > 0)
-            {
-                Lives.hearts--;
-            }
-            else
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
-        }
-    }
-
 
     private void OnDrawGizmosSelected()
     {
@@ -85,6 +68,8 @@ public class MonsterScript : CharacterInheritance
         Debug.DrawLine(minPosTransform, maxPosTransform, Color.cyan);
     }
 
+
+
     // animate the walking with timePerFrame seconds between each frame
     IEnumerator walkingAnimation(float timePerFrame)
     {
@@ -92,10 +77,34 @@ public class MonsterScript : CharacterInheritance
         {
             yield return new WaitForSeconds(timePerFrame);
             mySpriteRenderer.sprite = jumpSprite[i];
-            yield return new WaitForSeconds(timePerFrame);
         }
 
         // loop
         StartCoroutine(walkingAnimation(timePerFrame));
+    }
+
+
+
+    protected override void Hurt(Vector3 impactDirection)
+    {
+        if (Mathf.Abs(impactDirection.x) > Mathf.Abs(impactDirection.y))
+        {
+            directionMonster = (int)Mathf.Sign(-impactDirection.x);
+        }
+        else
+        {
+            if (impactDirection.y > 0.0f)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+    }
+
+
+    public void TakeDamage()
+    {
+        Debug.Log("Damage Taken to monster");
+        Destroy(gameObject);
     }
 }

@@ -475,16 +475,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2175058081460953239, guid: 9475794ab6dbb441eb98ba00ec7b5816, type: 3}
       propertyPath: jumpSprite.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: -2175058081460953239, guid: 9475794ab6dbb441eb98ba00ec7b5816, type: 3}
+      propertyPath: jumpSprite.Array.data[0]
+      value: 
+      objectReference: {fileID: 7929751021075451739, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
+    - target: {fileID: -2175058081460953239, guid: 9475794ab6dbb441eb98ba00ec7b5816, type: 3}
+      propertyPath: jumpSprite.Array.data[1]
+      value: 
+      objectReference: {fileID: -80066363666632943, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
     - target: {fileID: -2175058081460953239, guid: 9475794ab6dbb441eb98ba00ec7b5816, type: 3}
       propertyPath: jumpSprite.Array.data[2]
       value: 
-      objectReference: {fileID: 5116084446230471435, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
+      objectReference: {fileID: 2156256049751379566, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
     - target: {fileID: -2175058081460953239, guid: 9475794ab6dbb441eb98ba00ec7b5816, type: 3}
       propertyPath: jumpSprite.Array.data[3]
       value: 
-      objectReference: {fileID: 4218856601446408012, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
+      objectReference: {fileID: 2918077705451735570, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
+    - target: {fileID: -2175058081460953239, guid: 9475794ab6dbb441eb98ba00ec7b5816, type: 3}
+      propertyPath: jumpSprite.Array.data[4]
+      value: 
+      objectReference: {fileID: 6081644748365158183, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
+    - target: {fileID: -2175058081460953239, guid: 9475794ab6dbb441eb98ba00ec7b5816, type: 3}
+      propertyPath: jumpSprite.Array.data[5]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5737364624731998562, guid: 9475794ab6dbb441eb98ba00ec7b5816, type: 3}
       propertyPath: m_Name
       value: monsterJump1
