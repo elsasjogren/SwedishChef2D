@@ -87,23 +87,21 @@ public class MonsterScript : CharacterInheritance
 
     protected override void Hurt(Vector3 impactDirection)
     {
-        if (Mathf.Abs(impactDirection.x) > Mathf.Abs(impactDirection.y))
-        {
-            directionMonster = (int)Mathf.Sign(-impactDirection.x);
-        }
-        else
-        {
-            if (impactDirection.y > 0.0f)
+        //if (Mathf.Abs(impactDirection.x) > Mathf.Abs(impactDirection.y)) //if the player collides with the enemy from the side
+        //{
+        //    directionMonster = (int)Mathf.Sign(-impactDirection.x); //change the monsters direction so he will contantly attack the player 
+        //}
+        //else
+        //{
+            if (impactDirection.y > 0.0f) // if the collision comes from the top of the monster(i.e. monster is jumped on)
             {
                 Destroy(gameObject);
             }
-        }
+        //}
 
     }
 
-
-    public void TakeDamage()
-    {
+    public void TakeDamage() {
         Debug.Log("Damage Taken to monster");
         Destroy(gameObject);
     }
