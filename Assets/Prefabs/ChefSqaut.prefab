@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 1869179760675998889}
   - component: {fileID: 1869179760675998894}
   - component: {fileID: 480318245}
+  - component: {fileID: 2140116718}
   m_Layer: 0
   m_Name: ChefSqaut
   m_TagString: Player
@@ -191,7 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGrounded: 0
   speed: 3
-  jumpForce: 10
+  jumpForce: 6
   walking:
   - {fileID: 7271486832701426764, guid: 6a0148e397a004b4ab58f601ab9aed66, type: 3}
   - {fileID: 3676964441073575191, guid: 6a0148e397a004b4ab58f601ab9aed66, type: 3}
@@ -216,3 +217,19 @@ CapsuleCollider2D:
   m_Offset: {x: -0.033177376, y: -0.049337387}
   m_Size: {x: 0.72130394, y: 1.3670831}
   m_Direction: 0
+--- !u!114 &2140116718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869179760675998869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d1b60df72f5e4300bd49d6b6d678b11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lives:
+  - {fileID: 0}
+  fullHeart: {fileID: -4504514445776867244, guid: c9061b6f652369041afc06e163c0c5b7, type: 3}
+  emptyHeart: {fileID: 1809536987924329634, guid: c9061b6f652369041afc06e163c0c5b7, type: 3}

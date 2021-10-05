@@ -540,10 +540,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1869179760675998894, guid: 7ad62559422174377be577a5a87e011b, type: 3}
-      propertyPath: jumpForce
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ad62559422174377be577a5a87e011b, type: 3}
 --- !u!1001 &810148843
@@ -5931,22 +5927,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1869179760675998869, guid: 7ad62559422174377be577a5a87e011b, type: 3}
   m_PrefabInstance: {fileID: 695517067}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2140116718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2140116717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d1b60df72f5e4300bd49d6b6d678b11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lives:
-  - {fileID: 0}
-  fullHeart: {fileID: -4504514445776867244, guid: c9061b6f652369041afc06e163c0c5b7, type: 3}
-  emptyHeart: {fileID: 1809536987924329634, guid: c9061b6f652369041afc06e163c0c5b7, type: 3}
 --- !u!1001 &1102804820139387192
 PrefabInstance:
   m_ObjectHideFlags: 0
