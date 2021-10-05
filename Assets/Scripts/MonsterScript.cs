@@ -29,6 +29,8 @@ public class MonsterScript : CharacterInheritance
         startPos = transform.position;
         maxPos = startPos.x + range / 2;
         minPos = startPos.x - range / 2;
+
+        StartCoroutine(walkingAnimation(0.5f));  // animate
     }
 
     private void Update()
@@ -37,7 +39,6 @@ public class MonsterScript : CharacterInheritance
         vel.x = monsterSpeed * directionMonster;
         rb2d.velocity = vel;
         monsterDirection();
-        StartCoroutine(walkingAnimation(0.5f));  // animate
     }
 
     void monsterDirection()

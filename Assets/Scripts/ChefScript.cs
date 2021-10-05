@@ -16,11 +16,13 @@ public class ChefScript : CharacterInheritance
 
     // true if currently walking
     private bool isWalking;
+    private Sprite idle;
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
+        idle = mySpriteRenderer.sprite;
     }
 
 
@@ -52,6 +54,8 @@ public class ChefScript : CharacterInheritance
         {
             StopAllCoroutines();
             isWalking = false;
+            mySpriteRenderer.sprite = idle;
+
         } else { 
             if (!isWalking) 
             {
