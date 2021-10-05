@@ -17,12 +17,5 @@ public class MonsterSpawner : MonoBehaviour
         Instantiate(myPrefab, pos, Quaternion.identity);
     }
 
-    //void DirectionOfEnemy ()
-    ////{
-    ////    if (!grounded)
-    ////    {
-    ////        direction = 0;
-    ////        return 0;
-    ////    }
-    //}
+    
 }
