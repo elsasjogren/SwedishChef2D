@@ -13,19 +13,19 @@ public class Grounded : MonoBehaviour
         groundedChar = character.GetComponent<CharacterInheritance>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.collider.CompareTag("Ground"))
+        if (collider.CompareTag("Ground"))
         {
             groundedChar.isGrounded = true;
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collision.collider.CompareTag("Ground"))
+        if (collider.CompareTag("Ground"))
         {
-            groundedChar.isGrounded = false ;
+            groundedChar.isGrounded = true;
         }
     }
 }

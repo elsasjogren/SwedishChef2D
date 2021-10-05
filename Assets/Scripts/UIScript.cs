@@ -6,12 +6,14 @@ using UnityEngine.UI;
 public class UIScript : MonoBehaviour
 {
     public Text scoreText;
+    private static UIScript instance;
 
-    public static int Score;
-
+    public int Score;
+    
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        instance = this;
         Score = 0;
         scoreText.text = "Croissants: " + Score.ToString();
     }
@@ -25,6 +27,12 @@ public class UIScript : MonoBehaviour
     // increase the score (for when crossaint collected
     public static void IncreaseScore()
     {
+        instance._IncreaseScore();
+    }
+
+    public void _IncreaseScore()
+    {
         Score += 1;
+        scoreText.text = "Croissants: " + Score.ToString();
     }
 }
