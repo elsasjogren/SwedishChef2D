@@ -9,7 +9,7 @@ public abstract class CharacterInheritance : MonoBehaviour
 
     protected abstract void Hurt(Vector3 impactDirection);
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         CharacterInheritance controller = collision.gameObject.GetComponent<CharacterInheritance>();
         if (controller != null)

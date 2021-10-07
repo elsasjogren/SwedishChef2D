@@ -17,6 +17,8 @@ public class ChefScript : CharacterInheritance
     // true if currently walking
     private bool isWalking;
     private Sprite idle;
+    public bool isHurting = false;
+    public float hurtTime = 1.5f;
 
     void Start()
     {
@@ -52,7 +54,7 @@ public class ChefScript : CharacterInheritance
         // animate if moving, stop if not
         if (movementHorizontal == 0)
         {
-            StopAllCoroutines();
+            StopCoroutine(walkingAnimation(0.1f));
             isWalking = false;
             mySpriteRenderer.sprite = idle;
 
@@ -77,20 +79,6 @@ public class ChefScript : CharacterInheritance
         }
     }
 
-    // animate the walking with timePerFrame seconds between each frame
-    IEnumerator walkingAnimation(float timePerFrame)
-    {
-        for(int i = 0; i < walking.Length; i++)
-        {
-            yield return new WaitForSeconds(timePerFrame);
-            mySpriteRenderer.sprite = walking[i];
-        }
-
-        // loop
-        StartCoroutine(walkingAnimation(timePerFrame));
-    }
-
-
     protected override void Hurt(Vector3 impactDirection)
     {
         if (Mathf.Abs(impactDirection.x) > Mathf.Abs(impactDirection.y))
@@ -105,14 +93,40 @@ public class ChefScript : CharacterInheritance
             }
             Vector2 vel = rb2d.velocity;
             //vel.y = jumpforce;
-            rb2d.velocity = vel;
+            rb2d.velocity = vel*-impactDirection.normalized;
+        }
+        
+    }
+
+    public void TakeDamage()
+    {
+        if(!isHurting)
+        {
+            Debug.Log("Damage Taken to player");
+            UIScript.Damaged();
+            StartCoroutine(hurting());
         }
     }
 
 
-    public void TakeDamage()
+    // animate the walking with timePerFrame seconds between each frame
+    IEnumerator walkingAnimation(float timePerFrame)
     {
-        Debug.Log("Damage Taken to player");
-        GetComponent<Lives>().Damaged();
+        for (int i = 0; i < walking.Length; i++)
+        {
+            yield return new WaitForSeconds(timePerFrame);
+            mySpriteRenderer.sprite = walking[i];
+        }
+
+        // loop
+        StartCoroutine(walkingAnimation(timePerFrame));
     }
+
+    IEnumerator hurting()
+    {
+        isHurting = true;
+        yield return new WaitForSeconds(0.1f);
+        isHurting = false;
+    }
+
 };
