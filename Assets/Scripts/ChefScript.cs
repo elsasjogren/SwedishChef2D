@@ -14,8 +14,8 @@ public class ChefScript : CharacterInheritance
     public Sprite[] jumpin = new Sprite[2];
 
 
-    // true if currently walking
-    private bool isWalking;
+    // true if walked last update
+    private bool wasWalking;
     private Sprite idle;
     public bool isHurting = false;
     public float hurtTime = 1.5f;
@@ -54,15 +54,14 @@ public class ChefScript : CharacterInheritance
         // animate if moving, stop if not
         if (movementHorizontal == 0)
         {
-            StopCoroutine(walkingAnimation(0.1f));
-            isWalking = false;
             mySpriteRenderer.sprite = idle;
+            wasWalking = false;
 
-        } else { 
-            if (!isWalking) 
+        } else {
+            if (!wasWalking) 
             {
                 StartCoroutine(walkingAnimation(0.1f));
-                isWalking = true;
+                wasWalking = true;
             }
         }
        
@@ -74,8 +73,8 @@ public class ChefScript : CharacterInheritance
         if (collision.CompareTag("Item"))
         {
             // collect the croissant
-            UIScript.IncreaseScore();  // doesnt work rn :((((
             Destroy(collision.gameObject);
+            UIScript.IncreaseScore();  // doesnt work rn :((((
         }
     }
 
@@ -118,8 +117,16 @@ public class ChefScript : CharacterInheritance
             mySpriteRenderer.sprite = walking[i];
         }
 
-        // loop
-        StartCoroutine(walkingAnimation(timePerFrame));
+        // loop, or stop moving depending on if the last frame he walked or not
+        if(wasWalking)
+        {
+            StartCoroutine(walkingAnimation(timePerFrame));
+        } else
+        {
+            mySpriteRenderer.sprite = idle;
+            yield break;
+        }
+        
     }
 
     IEnumerator hurting()
