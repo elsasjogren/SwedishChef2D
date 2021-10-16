@@ -20,6 +20,8 @@ public class ChefScript : CharacterInheritance
     public bool isHurting = false;
     public float hurtTime = 1.5f;
 
+    public bool isCollecting = false; // true if currently picking up an item
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -70,8 +72,10 @@ public class ChefScript : CharacterInheritance
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Item"))
+        if (collision.CompareTag("Item") && !isCollecting)
         {
+
+            StartCoroutine(delay(isCollecting));
             // collect the croissant
             Destroy(collision.gameObject);
             UIScript.IncreaseScore();  // doesnt work rn :((((
@@ -83,9 +87,7 @@ public class ChefScript : CharacterInheritance
         if (Mathf.Abs(impactDirection.x) > Mathf.Abs(impactDirection.y))
         {
             TakeDamage();
-        }
-        else
-        {
+        } else {
             if (impactDirection.y > 0.0f)
             {
                 TakeDamage();
@@ -101,9 +103,8 @@ public class ChefScript : CharacterInheritance
     {
         if(!isHurting)
         {
-            Debug.Log("Damage Taken to player");
             UIScript.Damaged();
-            StartCoroutine(hurting());
+            StartCoroutine(delay(isHurting));
         }
     }
 
@@ -129,11 +130,11 @@ public class ChefScript : CharacterInheritance
         
     }
 
-    IEnumerator hurting()
+    IEnumerator delay(bool boolVal)
     {
-        isHurting = true;
+        boolVal = true;
         yield return new WaitForSeconds(0.1f);
-        isHurting = false;
+        boolVal = false;
     }
 
 };

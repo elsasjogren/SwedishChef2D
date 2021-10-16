@@ -29,6 +29,14 @@ public class UIScript : MonoBehaviour
         scoreText.text = "Croissants: " + Score.ToString();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
     // increase the score (for when crossaint collected
     public static void IncreaseScore()
     {
