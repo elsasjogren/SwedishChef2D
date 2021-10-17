@@ -15,7 +15,7 @@ public class ChefScript : CharacterInheritance
 
 
     // true if walked last update
-    private bool wasWalking;
+    private bool inMotion = false;
     private Sprite idle;
     public bool isHurting = false;
     public float hurtTime = 1.5f;
@@ -72,15 +72,13 @@ public class ChefScript : CharacterInheritance
         if (movementHorizontal == 0)
         {
             mySpriteRenderer.sprite = idle;
-            wasWalking = false;
+            inMotion = false;
 
-        }
-        else
-        {
-            if (!wasWalking)
+        } else { // is in motion
+            if (!inMotion) // start animation again, if was still
             {
+                inMotion = true;
                 StartCoroutine(walkingAnimation(0.1f));
-                wasWalking = true;
             }
         }
 
@@ -121,18 +119,19 @@ public class ChefScript : CharacterInheritance
     {
         for (int i = 0; i < walking.Length; i++)
         {
+            if(!inMotion) // end animation if still
+            {
+                mySpriteRenderer.sprite = idle;
+                yield break;
+            }
             yield return new WaitForSeconds(timePerFrame);
             mySpriteRenderer.sprite = walking[i];
         }
 
         // loop, or stop moving depending on if the last frame he walked or not
-        if(wasWalking)
+        if(inMotion)
         {
             StartCoroutine(walkingAnimation(timePerFrame));
-        } else
-        {
-            mySpriteRenderer.sprite = idle;
-            yield break;
         }
         
     }

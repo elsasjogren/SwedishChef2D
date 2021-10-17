@@ -33,10 +33,7 @@ public class PastryScript : MonoBehaviour
         if (collision.CompareTag("Player") && !beingCollected)
         {
             beingCollected = true;
-            //StartCoroutine(getCollected());
-            myaudio.PlayOneShot(collectionSounds[Random.Range(0, collectionSounds.Length)]);
-            UIScript.IncreaseScore();
-            Destroy(gameObject);
+            StartCoroutine(getCollected());
         }
     }
 
@@ -44,6 +41,9 @@ public class PastryScript : MonoBehaviour
     {
         myaudio.PlayOneShot(collectionSounds[Random.Range(0, collectionSounds.Length)]);
         UIScript.IncreaseScore();
+
+        // make it disapear while giving time to play audio before destroying
+        GetComponent<SpriteRenderer>().sprite = null;
         yield return new WaitForSeconds(collectionDelay);
         Destroy(gameObject);
     }
