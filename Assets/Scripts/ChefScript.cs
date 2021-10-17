@@ -6,10 +6,10 @@ public class ChefScript : CharacterInheritance
 {
     public float speed;
 
-    private Rigidbody2D rb2d;
     private SpriteRenderer mySpriteRenderer;
 
     public float jumpForce;
+    public float airSpeedReduction = 0.8f;
     public Sprite[] walking = new Sprite[4];
     public Sprite[] jumpin = new Sprite[2];
 
@@ -21,9 +21,11 @@ public class ChefScript : CharacterInheritance
     public float hurtTime = 1.5f;
 
     public bool isCollecting = false; // true if currently picking up an item
+    public bool movement = false;
 
     void Start()
     {
+        // initialize vars
         rb2d = GetComponent<Rigidbody2D>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
         idle = mySpriteRenderer.sprite;
@@ -32,10 +34,17 @@ public class ChefScript : CharacterInheritance
 
     void Update()
     {
+        // dont move until door is done speaking
+        if(movement)
+        {
+            Move();
+        }
+    }
 
+    private void Move()
+    {
+        // get horizontal input to determine motion
         float movementHorizontal = 0;
-
-        
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             mySpriteRenderer.flipX = true;
@@ -47,10 +56,16 @@ public class ChefScript : CharacterInheritance
             movementHorizontal = speed;
         }
 
-        // Jump
+        // jump (only while on the ground)
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+        }
+
+        // reduce airspeed
+        if (!isGrounded)
+        {
+            movementHorizontal = movementHorizontal * airSpeedReduction;
         }
 
         // animate if moving, stop if not
@@ -59,27 +74,18 @@ public class ChefScript : CharacterInheritance
             mySpriteRenderer.sprite = idle;
             wasWalking = false;
 
-        } else {
-            if (!wasWalking) 
+        }
+        else
+        {
+            if (!wasWalking)
             {
                 StartCoroutine(walkingAnimation(0.1f));
                 wasWalking = true;
             }
         }
-       
+
+        // set new velocity
         rb2d.velocity = new Vector2(movementHorizontal, rb2d.velocity.y);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Item") && !isCollecting)
-        {
-
-            StartCoroutine(delay(isCollecting));
-            // collect the croissant
-            Destroy(collision.gameObject);
-            UIScript.IncreaseScore();  // doesnt work rn :((((
-        }
     }
 
     protected override void Hurt(Vector3 impactDirection)
@@ -87,6 +93,7 @@ public class ChefScript : CharacterInheritance
         if (Mathf.Abs(impactDirection.x) > Mathf.Abs(impactDirection.y))
         {
             TakeDamage();
+
         } else {
             if (impactDirection.y > 0.0f)
             {
@@ -99,18 +106,18 @@ public class ChefScript : CharacterInheritance
         
     }
 
-    public void TakeDamage()
+    protected override void TakeDamage()
     {
         if(!isHurting)
         {
             UIScript.Damaged();
-            StartCoroutine(delay(isHurting));
+            StartCoroutine(Hurting(hurtTime));
         }
     }
 
 
     // animate the walking with timePerFrame seconds between each frame
-    IEnumerator walkingAnimation(float timePerFrame)
+    protected override IEnumerator walkingAnimation(float timePerFrame)
     {
         for (int i = 0; i < walking.Length; i++)
         {
@@ -130,11 +137,9 @@ public class ChefScript : CharacterInheritance
         
     }
 
-    IEnumerator delay(bool boolVal)
+    IEnumerator Hurting(float timetToHurt)
     {
-        boolVal = true;
         yield return new WaitForSeconds(0.1f);
-        boolVal = false;
     }
 
 };

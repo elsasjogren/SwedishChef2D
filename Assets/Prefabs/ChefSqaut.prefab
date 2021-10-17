@@ -171,7 +171,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -191,7 +191,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGrounded: 0
   speed: 5
-  jumpForce: 13
+  jumpForce: 20
+  airSpeedReduction: 0.66
   walking:
   - {fileID: 7271486832701426764, guid: 6a0148e397a004b4ab58f601ab9aed66, type: 3}
   - {fileID: 3676964441073575191, guid: 6a0148e397a004b4ab58f601ab9aed66, type: 3}
@@ -202,6 +203,7 @@ MonoBehaviour:
   - {fileID: -3168710424680038049, guid: 6a0148e397a004b4ab58f601ab9aed66, type: 3}
   isHurting: 0
   hurtTime: 1.5
+  isCollecting: 0
 --- !u!70 &480318245
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

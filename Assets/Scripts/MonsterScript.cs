@@ -7,17 +7,19 @@ public class MonsterScript : CharacterInheritance
 {
     public bool FindPlayer;
 
-    private Rigidbody2D rb2d;
     private SpriteRenderer mySpriteRenderer;
+    private AudioSource myaudio;
 
-    public Sprite[] jumpSprite = new Sprite[5];
-    public Sprite[] attackSprite = new Sprite[6];
+    public Sprite[] movingSprite = new Sprite[5];
     public Sprite[] destroySprite = new Sprite[7];
+    public bool dying;
+    public float timeToDie;
+    public AudioClip squished;
 
+    // motion vars
     public float monsterSpeed;
     float maxPos;
     float minPos;
-
     public float range;
     private Vector3 startPos;
     private int directionMonster = 1;
@@ -26,11 +28,12 @@ public class MonsterScript : CharacterInheritance
     {
         rb2d = GetComponent<Rigidbody2D>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
+        myaudio = GetComponent<AudioSource>();
         startPos = transform.position;
         maxPos = startPos.x + range / 2;
         minPos = startPos.x - range / 2;
 
-        StartCoroutine(walkingAnimation(0.5f));  // animate
+        StartCoroutine(walkingAnimation(0.3f));  // animate
     }
 
     private void Update()
@@ -43,6 +46,7 @@ public class MonsterScript : CharacterInheritance
 
     void monsterDirection()
     {
+
         //define a space within the monster can run and if he hits on edge turn and go the other way
         if (transform.position.x > maxPos)
         {
@@ -58,30 +62,36 @@ public class MonsterScript : CharacterInheritance
         }
     }
 
-
-    private void OnDrawGizmosSelected()
-    {
-        maxPos = startPos.x + range / 2;
-        minPos = startPos.x - range / 2;
-        //called if you have selected the game object in editor
-        Vector3 minPosTransform = new Vector3(minPos, transform.position.y, -1);
-        Vector3 maxPosTransform = new Vector3(maxPos, transform.position.y, -1);
-        Debug.DrawLine(minPosTransform, maxPosTransform, Color.cyan);
-    }
-
-
-
     // animate the walking with timePerFrame seconds between each frame
-    IEnumerator walkingAnimation(float timePerFrame)
+    protected override IEnumerator walkingAnimation(float timePerFrame)
     {
-        for (int i = 0; i < jumpSprite.Length; i++)
+        // go through sprites
+        for (int i = 0; i < movingSprite.Length; i++)
         {
+            if(dying) yield break;
             yield return new WaitForSeconds(timePerFrame);
-            mySpriteRenderer.sprite = jumpSprite[i];
+            mySpriteRenderer.sprite = movingSprite[i];
         }
 
-        // loop
-        StartCoroutine(walkingAnimation(timePerFrame));
+        if(!dying)
+        {
+            StartCoroutine(walkingAnimation(timePerFrame));
+        }
+        
+    }
+
+    private IEnumerator dyingAnimation(float timeToDie)
+    {
+
+        myaudio.PlayOneShot(squished);
+        // go through sprites
+        for (int i = 0; i < destroySprite.Length; i++)
+        {
+            yield return new WaitForSeconds(timeToDie / destroySprite.Length);
+            mySpriteRenderer.sprite = destroySprite[i];
+        }
+
+        Destroy(gameObject);
     }
 
 
@@ -95,15 +105,31 @@ public class MonsterScript : CharacterInheritance
         else
         {
             if (impactDirection.y > 0.0f) // if the collision comes from the top of the monster(i.e. monster is jumped on)
-        {
-            Destroy(gameObject);
+            {
+                TakeDamage();
+            }
         }
+
+    }
+    // kill monster if damage is taken
+    protected override void TakeDamage() {
+        dying = true;
+        monsterSpeed = 0;
+        Vector3 currPos = transform.position;
+        rb2d.simulated = false;
+        StartCoroutine(dyingAnimation(timeToDie));
     }
 
-}
+    //called if you have selected the game object in editor
+    private void OnDrawGizmosSelected()
+    {
+        maxPos = startPos.x + range / 2;
+        minPos = startPos.x - range / 2;
 
-    public void TakeDamage() {
-        Debug.Log("Damage Taken to monster");
-        Destroy(gameObject);
+        Vector3 minPosTransform = new Vector3(minPos, transform.position.y, -1);
+        Vector3 maxPosTransform = new Vector3(maxPos, transform.position.y, -1);
+        Debug.DrawLine(minPosTransform, maxPosTransform, Color.cyan);
     }
+
+
 }

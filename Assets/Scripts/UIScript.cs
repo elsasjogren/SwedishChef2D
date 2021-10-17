@@ -15,6 +15,7 @@ public class UIScript : MonoBehaviour
     public GameObject door; // reference to end door
 
     public Sprite[] openDoor; // sprites for opening the door
+    public AudioClip ding; // food bell chime
 
     // life vars
     static public int hearts = 3; // number of hits
@@ -24,6 +25,7 @@ public class UIScript : MonoBehaviour
 
     void Awake()
     {
+        // init vars
         instance = this;
         Score = 0;
         scoreText.text = "Croissants: " + Score.ToString();
@@ -31,22 +33,31 @@ public class UIScript : MonoBehaviour
 
     private void Update()
     {
+        // reset button
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
+    public static void Reset()
+    {
+         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
     // increase the score (for when crossaint collected
     public static void IncreaseScore()
     {
-        Debug.Log("called");
         instance._IncreaseScore();
     }
 
     public static void Damaged()
     {
         instance._Damaged();
+    }
+
+    public static void WinGame()
+    {
+        instance._WinGame();
     }
 
     private void _IncreaseScore()
@@ -75,10 +86,13 @@ public class UIScript : MonoBehaviour
         // open the door if score is enough
         if(Score >= winCondition)
         {
-            // [INSERT SOUND PLAYING HERE]
-            door.GetComponent<SpriteRenderer>().sprite = openDoor[0];
-            Transform topDoor = door.transform.GetChild(0);
-            topDoor.GetComponent<SpriteRenderer>().sprite = openDoor[1];
+            door.GetComponent<DoorScript>().DoorStatusChange(true);
         }
+    }
+
+    private void _WinGame()
+    {
+        Transform panel = transform.GetChild(2);
+        panel.gameObject.SetActive(true);
     }
 }

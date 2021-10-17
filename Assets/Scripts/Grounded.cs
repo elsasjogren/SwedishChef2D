@@ -9,10 +9,12 @@ public class Grounded : MonoBehaviour
     
     void Start()
     {
+        // init vars
         character = gameObject.transform.parent.gameObject;
         groundedChar = character.GetComponent<CharacterInheritance>();
     }
 
+    // check if the grounded object has passed through/out of ground
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.CompareTag("Ground"))
