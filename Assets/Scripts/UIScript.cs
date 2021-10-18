@@ -20,6 +20,10 @@ public class UIScript : MonoBehaviour
     [SerializeField] Image[] lives = new Image[maxHearts]; // heart icons
     [SerializeField] Sprite emptyHeart;
 
+
+    //win vars
+    [SerializeField] Text winText; // text visible
+
     void Awake()
     {
         // init vars
@@ -94,5 +98,15 @@ public class UIScript : MonoBehaviour
     {
         Transform panel = transform.GetChild(2);
         panel.gameObject.SetActive(true);
+        int extra = winCondition - Score;
+        if (extra > 0)
+        {
+            winText.text = "And you collected " + Score.ToString() + " pasteries, that's " + extra.ToString() + " more than needed!";
+        }
+        else
+        {
+            winText.text = "And you collected " + Score.ToString() + " pasteries, that's just enough! Play again to see if you can collect more!";
+        }
+       
     }
 }
