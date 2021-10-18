@@ -101,9 +101,12 @@ public class ChefScript : CharacterInheritance
 
     protected override void TakeDamage()
     {
+        if(!isHurting)
+        {
             UIScript.Damaged();
             isHurting = true;
             StartCoroutine(Hurting(hurtTime));
+        }
     }
 
 

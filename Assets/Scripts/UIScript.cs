@@ -15,17 +15,10 @@ public class UIScript : MonoBehaviour
     [SerializeField] GameObject door; // reference to end door
 
     // life vars
-<<<<<<< HEAD
-    static public int hearts = 3; // number of hits
-    public Image[] lives = new Image[hearts]; // heart icons, getting an overflow exception?
-    public Sprite halfFullHeart; 
-    public Sprite emptyHeart;
-=======
     static public int maxHearts = 3; // number of hits
     private int currHearts;
     [SerializeField] Image[] lives = new Image[maxHearts]; // heart icons
     [SerializeField] Sprite emptyHeart;
->>>>>>> main
 
     void Awake()
     {
@@ -74,20 +67,12 @@ public class UIScript : MonoBehaviour
 
     private void _Damaged()
     {
-<<<<<<< HEAD
-        hearts--;
-        // make heart an empty heart sprite after taking damage
-        lives[hearts].sprite = emptyHeart;//getting an index out of bounds exception here when he encounters monsters after first monster encounter
-
-        if (hearts == 0) //reset, game lost
-=======
         currHearts--;
         
         // make heart an empty heart sprite after taking damage
         lives[currHearts].sprite = emptyHeart;
 
         if (currHearts == 0)
->>>>>>> main
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
