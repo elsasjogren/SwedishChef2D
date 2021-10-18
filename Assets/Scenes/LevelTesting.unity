@@ -722,7 +722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1087511853}
   Score: 0
-  winCondition: 1
+  winCondition: 6
   door: {fileID: 2028059195}
   lives:
   - {fileID: 427071398}

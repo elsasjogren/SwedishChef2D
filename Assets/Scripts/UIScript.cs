@@ -98,7 +98,7 @@ public class UIScript : MonoBehaviour
     {
         Transform panel = transform.GetChild(2);
         panel.gameObject.SetActive(true);
-        int extra = winCondition - Score;
+        int extra = Score - winCondition;
         if (extra > 0)
         {
             winText.text = "And you collected " + Score.ToString() + " pasteries, that's " + extra.ToString() + " more than needed!";
