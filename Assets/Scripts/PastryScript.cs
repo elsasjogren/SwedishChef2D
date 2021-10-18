@@ -11,7 +11,7 @@ public class PastryScript : MonoBehaviour
     [SerializeField] bool beingCollected = false;
 
     private AudioSource myaudio;
-    [SerializeField] AudioClip[] collectionSounds;
+    [SerializeField] AudioClip collectionSound;
 
     void Awake()
     {
@@ -46,7 +46,7 @@ public class PastryScript : MonoBehaviour
     // item gets collected 
     private IEnumerator getCollected()
     {
-        myaudio.PlayOneShot(collectionSounds[Random.Range(0, collectionSounds.Length)]);
+        myaudio.PlayOneShot(collectionSound);
         UIScript.IncreaseScore();
 
         // make it disapear while giving time to play audio before destroying
