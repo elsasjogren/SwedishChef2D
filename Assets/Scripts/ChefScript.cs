@@ -4,24 +4,22 @@ using UnityEngine;
 
 public class ChefScript : CharacterInheritance
 {
-    public float speed;
-
-    private SpriteRenderer mySpriteRenderer;
-
-    public float jumpForce;
-    public float airSpeedReduction = 0.8f;
-    public Sprite[] walking = new Sprite[4];
-    public Sprite[] jumpin = new Sprite[2];
-
+    [SerializeField] float speed;
+    [SerializeField] float jumpForce;
+    [SerializeField] float airSpeedReduction = 0.8f;
+    [SerializeField] Sprite[] walking = new Sprite[4];
 
     // true if walked last update
-    private bool inMotion = false;
-    private Sprite idle;
-    public bool isHurting = false;
-    public float hurtTime = 1.5f;
+    [SerializeField] bool inMotion = false;
+    [SerializeField] Sprite idle;
+    [SerializeField] bool isHurting = false;
+    [SerializeField] float hurtTime = 1.5f;
+    [SerializeField] AnimationCurve blink;
 
-    public bool isCollecting = false; // true if currently picking up an item
+    // to enable player movement
     public bool movement = false;
+
+    private SpriteRenderer mySpriteRenderer;
 
     void Start()
     {
@@ -97,9 +95,6 @@ public class ChefScript : CharacterInheritance
             {
                 TakeDamage();
             }
-            Vector2 vel = rb2d.velocity;
-            //vel.y = jumpforce;
-            rb2d.velocity = vel*-impactDirection.normalized;
         }
         
     }
@@ -109,6 +104,7 @@ public class ChefScript : CharacterInheritance
         if(!isHurting)
         {
             UIScript.Damaged();
+            isHurting = true;
             StartCoroutine(Hurting(hurtTime));
         }
     }
@@ -135,10 +131,16 @@ public class ChefScript : CharacterInheritance
         }
         
     }
-
-    IEnumerator Hurting(float timetToHurt)
+    private IEnumerator Hurting(float timetToHurt)
     {
-        yield return new WaitForSeconds(0.1f);
+        float time = 0;
+        while (time < 1)
+        {
+            mySpriteRenderer.color = new Color(255, 255*blink.Evaluate(time), 255*blink.Evaluate(time));
+            time += Time.deltaTime; // normalize the time
+            yield return null;
+        }
+        isHurting = false;
     }
 
 };

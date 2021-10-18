@@ -196,7 +196,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
-  FindPlayer: 0
   movingSprite:
   - {fileID: -1266055460750163063, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
   - {fileID: 1999779489361178438, guid: cc94953f25b14460c855c82238a54d1f, type: 3}

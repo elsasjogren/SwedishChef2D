@@ -9,23 +9,21 @@ public class UIScript : MonoBehaviour
     private static UIScript instance;
 
     // scoring vars
-    public Text scoreText; // text visible
-    public int Score; // value for the score
-    public int winCondition = 3; // min score to open door
-    public GameObject door; // reference to end door
-
-    public Sprite[] openDoor; // sprites for opening the door
-    public AudioClip ding; // food bell chime
+    [SerializeField] Text scoreText; // text visible
+    [SerializeField] int Score; // value for the score
+    [SerializeField] int winCondition = 3; // min score to open door
+    [SerializeField] GameObject door; // reference to end door
 
     // life vars
-    static public int hearts = 3; // number of hits
-    public Image[] lives = new Image[hearts]; // heart icons
-    public Sprite halfFullHeart; 
-    public Sprite emptyHeart;
+    static public int maxHearts = 3; // number of hits
+    private int currHearts;
+    [SerializeField] Image[] lives = new Image[maxHearts]; // heart icons
+    [SerializeField] Sprite emptyHeart;
 
     void Awake()
     {
         // init vars
+        currHearts = maxHearts;
         instance = this;
         Score = 0;
         scoreText.text = "Croissants: " + Score.ToString();
@@ -69,12 +67,12 @@ public class UIScript : MonoBehaviour
 
     private void _Damaged()
     {
-        hearts--;
-
+        currHearts--;
+        
         // make heart an empty heart sprite after taking damage
-        lives[hearts].sprite = emptyHeart;
+        lives[currHearts].sprite = emptyHeart;
 
-        if (hearts == 0)
+        if (currHearts == 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
