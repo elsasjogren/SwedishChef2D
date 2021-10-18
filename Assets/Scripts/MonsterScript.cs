@@ -19,6 +19,9 @@ public class MonsterScript : CharacterInheritance
     private Vector3 startPos;
     private int directionMonster = 1;
 
+    [SerializeField] bool holdingPastry;
+    [SerializeField] GameObject pastry;
+
     private SpriteRenderer mySpriteRenderer;
     private AudioSource myaudio;
 
@@ -86,6 +89,15 @@ public class MonsterScript : CharacterInheritance
         {
             yield return new WaitForSeconds(timeToDie / destroySprite.Length);
             mySpriteRenderer.sprite = destroySprite[i];
+        }
+
+        // drop the pastry
+        if (holdingPastry)
+        {
+            // make invisible and delay destruction to allow spawning
+            mySpriteRenderer.sprite = null;
+            Instantiate(pastry, transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(1.0f);
         }
 
         Destroy(gameObject);
