@@ -113,19 +113,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f846683cfeddbe14eb13ee2ce95d29e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startY: 0
   bobSpeed: 2
   bobHeight: 0.25
   collectionDelay: 0.5
   beingCollected: 0
-  collectionSounds:
-  - {fileID: 8300000, guid: 047aea6fe6c4f384cba995ab7211b2d6, type: 3}
-  - {fileID: 8300000, guid: c0f337893da3d194d8db2c9fb08e5c96, type: 3}
-  - {fileID: 8300000, guid: 8e02cd5cfff58844d83b745c66532fbb, type: 3}
-  - {fileID: 8300000, guid: 16ec50bb3485c334f9fe4bc22abb0b90, type: 3}
-  - {fileID: 8300000, guid: 0974f6ae56f33bb4ca36d98f406991ef, type: 3}
-  - {fileID: 8300000, guid: 452cb75b8a2b0434198ee1fd01a6fa4e, type: 3}
-  - {fileID: 8300000, guid: e71f06731c572924cafdb534ae1e4791, type: 3}
+  collectionSound: {fileID: 8300000, guid: 4d2027cebb5624ac1b7710dd8303797f, type: 3}
 --- !u!82 &1333372290
 AudioSource:
   m_ObjectHideFlags: 0
