@@ -190,53 +190,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
+  rb2d: {fileID: 0}
   speed: 5
   jumpForce: 20
+  bounceForce: 0
   airSpeedReduction: 0.66
   walking:
   - {fileID: 7271486832701426764, guid: 6a0148e397a004b4ab58f601ab9aed66, type: 3}
+  - {fileID: 2931506107739998747, guid: 6a0148e397a004b4ab58f601ab9aed66, type: 3}
   - {fileID: 3676964441073575191, guid: 6a0148e397a004b4ab58f601ab9aed66, type: 3}
   - {fileID: -4389616296880375869, guid: 6a0148e397a004b4ab58f601ab9aed66, type: 3}
-  - {fileID: 2931506107739998747, guid: 6a0148e397a004b4ab58f601ab9aed66, type: 3}
-  jumpin:
-  - {fileID: 8057996015452532152, guid: 6a0148e397a004b4ab58f601ab9aed66, type: 3}
-  - {fileID: -3168710424680038049, guid: 6a0148e397a004b4ab58f601ab9aed66, type: 3}
-  isHurting: 0
-  hurtTime: 2
-  blink:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.0006465762
-      value: 0.9990616
-      inSlope: -0.03582596
-      outSlope: -0.03582596
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.47070578
-    - serializedVersion: 3
-      time: 0.10622005
-      value: 0.19845253
-      inSlope: -6.091053
-      outSlope: -6.091053
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.19928007
-      value: 0.00096147973
-      inSlope: 0.36638907
-      outSlope: 0.36638907
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.084018625
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 1
-    m_RotationOrder: 4
-  isCollecting: 0
+  inMotion: 0
+  idle: {fileID: 0}
+  hurtTime: 0.7
   movement: 0
 --- !u!70 &480318245
 CapsuleCollider2D:

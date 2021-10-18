@@ -2670,7 +2670,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1869179760675998894, guid: 7ad62559422174377be577a5a87e011b, type: 3}
       propertyPath: hurtTime
-      value: 6
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 1869179760675998894, guid: 7ad62559422174377be577a5a87e011b, type: 3}
       propertyPath: tapJumpForce

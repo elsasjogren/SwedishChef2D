@@ -14,7 +14,6 @@ public class ChefScript : CharacterInheritance
     public bool inMotion = false;
     [SerializeField] Sprite idle;
     [SerializeField] float hurtTime = 1.5f;
-    [SerializeField] AnimationCurve blink;
 
     // to enable player movement
     public bool movement = false;
@@ -144,9 +143,14 @@ public class ChefScript : CharacterInheritance
     private IEnumerator Hurting(float timetToHurt)
     {
         float time = 0;
-        while (time < 1)
+        while (time < timetToHurt)
         {
-            mySpriteRenderer.color = new Color(255, 255*blink.Evaluate(time), 255*blink.Evaluate(time));
+            if(time < timetToHurt/4 || (time > timetToHurt/2 && time < 3*timetToHurt/4))
+            {
+                mySpriteRenderer.color = new Color(255, 0, 0);
+            } else {
+                mySpriteRenderer.color = new Color(255, 255, 255);
+            }
             time += Time.deltaTime; // normalize the time
             yield return null;
         }
