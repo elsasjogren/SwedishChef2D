@@ -86,6 +86,7 @@ public class UIScript : MonoBehaviour
         if(Score >= winCondition)
         {
             door.GetComponent<DoorScript>().DoorStatusChange(true);
+            door.GetComponent<DoorScript>().playerSucceds();
         }
     }
 
