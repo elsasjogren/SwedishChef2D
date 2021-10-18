@@ -12,7 +12,6 @@ public class ChefScript : CharacterInheritance
     // true if walked last update
     [SerializeField] bool inMotion = false;
     [SerializeField] Sprite idle;
-    [SerializeField] bool isHurting = false;
     [SerializeField] float hurtTime = 1.5f;
     [SerializeField] AnimationCurve blink;
 
@@ -140,6 +139,9 @@ public class ChefScript : CharacterInheritance
             time += Time.deltaTime; // normalize the time
             yield return null;
         }
+
+        // ensure his color goes back to normal after
+        mySpriteRenderer.color = new Color(255, 255, 255);
         isHurting = false;
     }
 

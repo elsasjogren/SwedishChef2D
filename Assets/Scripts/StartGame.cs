@@ -5,6 +5,6 @@ public class StartGame : MonoBehaviour
 {
     public void LoadLevel()
     {
-        SceneManager.LoadScene("ElsaWorking");
+        SceneManager.LoadScene("Level1");
     }
 }

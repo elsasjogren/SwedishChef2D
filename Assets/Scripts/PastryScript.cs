@@ -19,6 +19,12 @@ public class PastryScript : MonoBehaviour
         startY = Mathf.RoundToInt(transform.position.y);
     }
 
+    private void Start()
+    {
+        // allow for some delay when spawned in to avoid instant pick up
+        StartCoroutine(delayPickup());
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -27,7 +33,7 @@ public class PastryScript : MonoBehaviour
         transform.position = bob;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         // collect the item
         if (collision.CompareTag("Player") && !beingCollected)
@@ -37,6 +43,7 @@ public class PastryScript : MonoBehaviour
         }
     }
 
+    // item gets collected 
     private IEnumerator getCollected()
     {
         myaudio.PlayOneShot(collectionSounds[Random.Range(0, collectionSounds.Length)]);
@@ -46,6 +53,13 @@ public class PastryScript : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = null;
         yield return new WaitForSeconds(collectionDelay);
         Destroy(gameObject);
+    }
+
+    private IEnumerator delayPickup()
+    {
+        beingCollected = true;
+        yield return new WaitForSeconds(collectionDelay);
+        beingCollected = false;
     }
 
 }

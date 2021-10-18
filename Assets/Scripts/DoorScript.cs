@@ -79,10 +79,12 @@ public class DoorScript : MonoBehaviour
         chefRenderer.flipX = false;
     }
 
-    public void playerSucceds() {
-        Transform winBubble = transform.GetChild(2);
-        winBubble.gameObject.transform.position = player.transform.position;
+    public IEnumerator playerSucceeds() {
+        Transform winBubble = player.transform.GetChild(1);
         winBubble.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(2.0f);
+        winBubble.gameObject.SetActive(false);
     }
 
 }

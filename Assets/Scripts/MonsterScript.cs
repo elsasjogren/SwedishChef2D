@@ -7,7 +7,6 @@ public class MonsterScript : CharacterInheritance
 {
     [SerializeField] Sprite[] movingSprite = new Sprite[5];
     [SerializeField] Sprite[] destroySprite = new Sprite[7];
-    [SerializeField] bool dying;
     [SerializeField] float timeToDie;
     [SerializeField] AudioClip squished;
 
@@ -68,12 +67,12 @@ public class MonsterScript : CharacterInheritance
         // go through sprites
         for (int i = 0; i < movingSprite.Length; i++)
         {
-            if(dying) yield break;
+            if(isHurting) yield break;
             yield return new WaitForSeconds(timePerFrame);
             mySpriteRenderer.sprite = movingSprite[i];
         }
 
-        if(!dying)
+        if(!isHurting)
         {
             StartCoroutine(walkingAnimation(timePerFrame));
         }
@@ -119,7 +118,7 @@ public class MonsterScript : CharacterInheritance
     }
     // kill monster if damage is taken
     protected override void TakeDamage() {
-        dying = true;
+        isHurting = true;
         monsterSpeed = 0;
         Vector3 currPos = transform.position;
         rb2d.simulated = false;

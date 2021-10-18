@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2590508904737848157, guid: 27208b36a42b9944cb3118f01bfb64b9, type: 3}
+      propertyPath: holdingPastry
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3554895965296438617, guid: 27208b36a42b9944cb3118f01bfb64b9, type: 3}
       propertyPath: m_Color.b
       value: 0.48588467
@@ -73,7 +77,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7729734792024811246, guid: 27208b36a42b9944cb3118f01bfb64b9, type: 3}
       propertyPath: m_Name
-      value: monster (1)
+      value: monsterPastry
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27208b36a42b9944cb3118f01bfb64b9, type: 3}

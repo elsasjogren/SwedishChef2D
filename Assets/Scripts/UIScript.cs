@@ -87,10 +87,10 @@ public class UIScript : MonoBehaviour
     private void checkWin()
     {
         // open the door if score is enough
-        if(Score >= winCondition)
+        if(Score == winCondition)
         {
             door.GetComponent<DoorScript>().DoorStatusChange(true);
-            door.GetComponent<DoorScript>().playerSucceds();
+            StartCoroutine(door.GetComponent<DoorScript>().playerSucceeds());
         }
     }
 
@@ -102,9 +102,7 @@ public class UIScript : MonoBehaviour
         if (extra > 0)
         {
             winText.text = "And you collected " + Score.ToString() + " pasteries, that's " + extra.ToString() + " more than needed!";
-        }
-        else
-        {
+        } else {
             winText.text = "And you collected " + Score.ToString() + " pasteries, that's just enough! Play again to see if you can collect more!";
         }
        

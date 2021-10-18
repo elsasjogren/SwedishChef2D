@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartMenu.unity
     guid: 64102a563b4bbdf47919ea4c0fe5c0f6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ElsaWorking.unity
     guid: 1d887ddbc282847248b2cc443d0bbc2c
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: 5294a50d7be6dd343bc9725a0dab3904
   m_configObjects: {}
