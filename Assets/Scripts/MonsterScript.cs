@@ -34,13 +34,6 @@ public class MonsterScript : CharacterInheritance
         maxPos = startPos.x + range / 2;
         minPos = startPos.x - range / 2;
 
-        // those holding onto an item will look bigger + browner
-        if(holdingPastry)
-        {
-            transform.localScale = new Vector3(1.25f, 1.25f, 1);
-            mySpriteRenderer.color = new Color(154, 102, 83);
-        }
-
         StartCoroutine(walkingAnimation(0.3f));  // animate
     }
 
