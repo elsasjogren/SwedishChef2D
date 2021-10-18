@@ -215,7 +215,7 @@ MonoBehaviour:
   squished: {fileID: 8300000, guid: 62abef7d9bc7dfb4386e94d7a15f2c2d, type: 3}
   monsterSpeed: 3
   range: 3
-  holdingPastry: 1
+  holdingPastry: 0
   pastry: {fileID: 2394615959093436322, guid: cf1f7034b86b46c428a9747449002306, type: 3}
 --- !u!50 &691913616
 Rigidbody2D:
