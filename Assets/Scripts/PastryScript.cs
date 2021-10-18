@@ -11,7 +11,7 @@ public class PastryScript : MonoBehaviour
     [SerializeField] bool beingCollected = false;
 
     private AudioSource myaudio;
-    [SerializeField] AudioClip[] collectionSound;
+    [SerializeField] AudioClip collectionSound;
 
     void Awake()
     {
