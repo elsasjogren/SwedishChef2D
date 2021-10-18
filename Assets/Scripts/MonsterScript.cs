@@ -5,24 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class MonsterScript : CharacterInheritance
 {
-    public bool FindPlayer;
+    [SerializeField] Sprite[] movingSprite = new Sprite[5];
+    [SerializeField] Sprite[] destroySprite = new Sprite[7];
+    [SerializeField] bool dying;
+    [SerializeField] float timeToDie;
+    [SerializeField] AudioClip squished;
+
+    // motion vars
+    [SerializeField] float monsterSpeed;
+    [SerializeField] float range;
+    private float maxPos;
+    private float minPos;
+    private Vector3 startPos;
+    private int directionMonster = 1;
 
     private SpriteRenderer mySpriteRenderer;
     private AudioSource myaudio;
-
-    public Sprite[] movingSprite = new Sprite[5];
-    public Sprite[] destroySprite = new Sprite[7];
-    public bool dying;
-    public float timeToDie;
-    public AudioClip squished;
-
-    // motion vars
-    public float monsterSpeed;
-    float maxPos;
-    float minPos;
-    public float range;
-    private Vector3 startPos;
-    private int directionMonster = 1;
 
     void Start()
     {
@@ -36,7 +34,7 @@ public class MonsterScript : CharacterInheritance
         StartCoroutine(walkingAnimation(0.3f));  // animate
     }
 
-    private void Update()
+    void Update()
     {
         Vector2 vel = rb2d.velocity;
         vel.x = monsterSpeed * directionMonster;
@@ -46,7 +44,6 @@ public class MonsterScript : CharacterInheritance
 
     void monsterDirection()
     {
-
         //define a space within the monster can run and if he hits on edge turn and go the other way
         if (transform.position.x > maxPos)
         {
@@ -94,8 +91,6 @@ public class MonsterScript : CharacterInheritance
         Destroy(gameObject);
     }
 
-
-
     protected override void Hurt(Vector3 impactDirection)
     {
         if (Mathf.Abs(impactDirection.x) > Mathf.Abs(impactDirection.y)) //if the player collides with the enemy from the side
@@ -109,7 +104,6 @@ public class MonsterScript : CharacterInheritance
                 TakeDamage();
             }
         }
-
     }
     // kill monster if damage is taken
     protected override void TakeDamage() {
@@ -119,12 +113,12 @@ public class MonsterScript : CharacterInheritance
         rb2d.simulated = false;
         StartCoroutine(dyingAnimation(timeToDie));
     }
-
+    
     //called if you have selected the game object in editor
     private void OnDrawGizmosSelected()
     {
-        maxPos = startPos.x + range / 2;
-        minPos = startPos.x - range / 2;
+        maxPos = transform.position.x + range / 2;
+        minPos = transform.position.x - range / 2;
 
         Vector3 minPosTransform = new Vector3(minPos, transform.position.y, -1);
         Vector3 maxPosTransform = new Vector3(maxPos, transform.position.y, -1);

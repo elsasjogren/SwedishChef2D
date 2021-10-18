@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class DoorScript : MonoBehaviour
 {
-    public GameObject player; // keep to tell player when can move
+    [SerializeField] GameObject player; // keep to tell player when can move
     private ChefScript chefScript;
 
-    public Sprite[] openDoor; // sprites for opening/closing the door
-    public Sprite[] closeDoor;
-    public AudioClip openCloseSound;
-    public float bubbleTime;
+    [SerializeField] Sprite[] openDoor; // sprites for opening/closing the door
+    [SerializeField] Sprite[] closeDoor;
+    [SerializeField] AudioClip openCloseSound;
+    [SerializeField] float bubbleTime;
 
     private SpriteRenderer mySpriteRenderer;
     private AudioSource myaudio;

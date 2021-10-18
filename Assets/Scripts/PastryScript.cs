@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PastryScript : MonoBehaviour
 {
-    public float startY;
-    public float bobSpeed = 2.0f;
-    public float bobHeight = 0.25f;
-    public float collectionDelay = 1.5f; // time between another item can be picked up
-    public bool beingCollected = false;
+    private float startY;
+    [SerializeField] float bobSpeed = 2.0f;
+    [SerializeField] float bobHeight = 0.25f;
+    [SerializeField] float collectionDelay = 1.5f; // time between another item can be picked up
+    [SerializeField] bool beingCollected = false;
 
     private AudioSource myaudio;
-    public AudioClip[] collectionSounds;
+    [SerializeField] AudioClip[] collectionSounds;
 
     void Awake()
     {

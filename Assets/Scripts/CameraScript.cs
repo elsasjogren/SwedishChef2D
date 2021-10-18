@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    public GameObject Player;
-    public float minX;
-    public float maxX;
-    public float minY;
-    public float maxY;
+    [SerializeField] GameObject Player;
+    [SerializeField] float minX;
+    [SerializeField] float maxX;
+    [SerializeField] float minY;
+    [SerializeField] float maxY;
 
     // Start is called before the first frame update
     void Awake()
@@ -23,9 +23,11 @@ public class CameraScript : MonoBehaviour
         {
             transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y, -10);
         } else {
+            
             float newX = Player.transform.position.x;
             float newY = Player.transform.position.y;
 
+            // prevent camera from moving beyond bounds
             if (Player.transform.position.x <= minX)
             {
                 newX = minX;
@@ -45,9 +47,7 @@ public class CameraScript : MonoBehaviour
             }
 
             transform.position = new Vector3(newX, newY, -10);
-
         }
-
     }
 
     private void OnDrawGizmosSelected()

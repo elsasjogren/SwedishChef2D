@@ -724,15 +724,10 @@ MonoBehaviour:
   Score: 0
   winCondition: 6
   door: {fileID: 2028059195}
-  openDoor:
-  - {fileID: 415490203615591267, guid: c9061b6f652369041afc06e163c0c5b7, type: 3}
-  - {fileID: -7474900146960033085, guid: c9061b6f652369041afc06e163c0c5b7, type: 3}
-  ding: {fileID: 0}
   lives:
   - {fileID: 427071398}
   - {fileID: 1032124672}
   - {fileID: 1296432827}
-  halfFullHeart: {fileID: 0}
   emptyHeart: {fileID: 1809536987924329634, guid: c9061b6f652369041afc06e163c0c5b7, type: 3}
 --- !u!1001 &322249557
 PrefabInstance:
@@ -743,7 +738,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6427913093716746791, guid: 27208b36a42b9944cb3118f01bfb64b9, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6427913093716746791, guid: 27208b36a42b9944cb3118f01bfb64b9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8863,7 +8858,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -10
+  m_SortingOrder: -8
   m_Sprite: {fileID: -9101116378190826443, guid: c9061b6f652369041afc06e163c0c5b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -25237,7 +25232,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -10
+  m_SortingOrder: -8
   m_Sprite: {fileID: 1426459323948452626, guid: c9061b6f652369041afc06e163c0c5b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -25610,15 +25605,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6427913093716746791, guid: 27208b36a42b9944cb3118f01bfb64b9, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6427913093716746791, guid: 27208b36a42b9944cb3118f01bfb64b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.73
+      value: 16.6
       objectReference: {fileID: 0}
     - target: {fileID: 6427913093716746791, guid: 27208b36a42b9944cb3118f01bfb64b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5
+      value: -3.95
       objectReference: {fileID: 0}
     - target: {fileID: 6427913093716746791, guid: 27208b36a42b9944cb3118f01bfb64b9, type: 3}
       propertyPath: m_LocalPosition.z
