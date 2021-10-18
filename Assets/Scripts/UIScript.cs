@@ -11,7 +11,7 @@ public class UIScript : MonoBehaviour
     // scoring vars
     [SerializeField] Text scoreText; // text visible
     [SerializeField] int Score; // value for the score
-    [SerializeField] int winCondition = 3; // min score to open door
+    [SerializeField] int winCondition; // min score to open door
     [SerializeField] GameObject door; // reference to end door
 
     // life vars
@@ -26,7 +26,8 @@ public class UIScript : MonoBehaviour
         currHearts = maxHearts;
         instance = this;
         Score = 0;
-        scoreText.text = "Croissants: " + Score.ToString();
+        scoreText.text = "Croissants: " + Score.ToString() + "/" + winCondition.ToString();
+        
     }
 
     private void Update()
@@ -61,7 +62,7 @@ public class UIScript : MonoBehaviour
     private void _IncreaseScore()
     {
         Score += 1;
-        scoreText.text = "Croissants: " + Score.ToString();
+        scoreText.text = "Croissants: " + Score.ToString() + "/" + winCondition.ToString();
         checkWin();
     }
 
