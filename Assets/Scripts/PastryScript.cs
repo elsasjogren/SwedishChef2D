@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class PastryScript : MonoBehaviour
 {
-    private float startY;
-    [SerializeField] float bobSpeed = 2.0f;
-    [SerializeField] float bobHeight = 0.25f;
+    // movement variables
+    private float startY; // store init pos to base movement around
+    [SerializeField] float bobSpeed = 2.0f; // frequency of bobs / second
+    [SerializeField] float bobHeight = 0.25f; // amplitude of bobs
+
+    // collection parameters
     [SerializeField] float collectionDelay = 1.5f; // time between another item can be picked up
-    [SerializeField] bool beingCollected = false;
+    [SerializeField] bool beingCollected = false; // true if player is collecting the pastry
 
     private AudioSource myaudio;
     [SerializeField] AudioClip collectionSound;
 
     void Awake()
     {
+        // init vars
         myaudio = GetComponent<AudioSource>();
-        startY = Mathf.RoundToInt(transform.position.y);
+        startY = Mathf.RoundToInt(transform.position.y); // round current pos to an int
     }
 
     private void Start()
@@ -46,6 +50,7 @@ public class PastryScript : MonoBehaviour
     // item gets collected 
     private IEnumerator getCollected()
     {
+        // make sound and increment score
         myaudio.PlayOneShot(collectionSound);
         UIScript.IncreaseScore();
 
@@ -55,6 +60,7 @@ public class PastryScript : MonoBehaviour
         Destroy(gameObject);
     }
 
+    // prevent player from collecting item on spawn
     private IEnumerator delayPickup()
     {
         beingCollected = true;

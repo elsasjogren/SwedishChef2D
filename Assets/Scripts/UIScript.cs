@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class UIScript : MonoBehaviour
 {
+    // singleton UIScript
     private static UIScript instance;
 
     // scoring vars
@@ -16,13 +15,12 @@ public class UIScript : MonoBehaviour
 
     // life vars
     static public int maxHearts = 3; // number of hits
-    private int currHearts;
+    private int currHearts; // current hearts  
     [SerializeField] Image[] lives = new Image[maxHearts]; // heart icons
     [SerializeField] Sprite emptyHeart;
 
-
     //win vars
-    [SerializeField] Text winText; // text visible
+    [SerializeField] Text winText; // text visible for win
 
     void Awake()
     {
@@ -34,35 +32,31 @@ public class UIScript : MonoBehaviour
         
     }
 
-    private void Update()
-    {
-        // reset button
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-    }
+    // allows play again button to reset the game
     public static void Reset()
     {
          SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    // increase the score (for when crossaint collected
+    // increase the score (for when pastry collected)
     public static void IncreaseScore()
     {
         instance._IncreaseScore();
     }
 
+    // player takes damage
     public static void Damaged()
     {
         instance._Damaged();
     }
 
+    // display win screen
     public static void WinGame()
     {
         instance._WinGame();
     }
 
+    // private method to increase score
     private void _IncreaseScore()
     {
         Score += 1;
@@ -70,6 +64,7 @@ public class UIScript : MonoBehaviour
         checkWin();
     }
 
+    // remove heart icons from UI for each hit taken
     private void _Damaged()
     {
         currHearts--;
@@ -77,6 +72,7 @@ public class UIScript : MonoBehaviour
         // make heart an empty heart sprite after taking damage
         lives[currHearts].sprite = emptyHeart;
 
+        // reload the game if at zero hearts
         if (currHearts == 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -84,16 +80,19 @@ public class UIScript : MonoBehaviour
 
     }
     
+    // check that the minimum score to win has been achieved
     private void checkWin()
     {
         // open the door if score is enough
         if(Score == winCondition)
         {
+            // open door and show player they have enough pastries
             door.GetComponent<DoorScript>().DoorStatusChange(true);
             StartCoroutine(door.GetComponent<DoorScript>().playerSucceeds());
         }
     }
 
+    // display a message to the winner about their score
     private void _WinGame()
     {
         Transform panel = transform.GetChild(2);

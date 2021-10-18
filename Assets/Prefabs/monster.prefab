@@ -80,10 +80,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6427913093716746791}
   - component: {fileID: 3554895965296438617}
-  - component: {fileID: 5041904138225709851}
   - component: {fileID: 2590508904737848157}
   - component: {fileID: 691913616}
   - component: {fileID: 8824512245130692093}
+  - component: {fileID: 1551894514}
   m_Layer: 0
   m_Name: monster
   m_TagString: Untagged
@@ -157,32 +157,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &5041904138225709851
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7729734792024811246}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.053833038, y: -0.02784264}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.3142858, y: 1.5714285}
-    newSize: {x: 1.3142858, y: 1.5714285}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.7622706, y: 0.87930703}
-  m_EdgeRadius: 0
 --- !u!114 &2590508904737848157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
+  rb2d: {fileID: 0}
   movingSprite:
   - {fileID: -1266055460750163063, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
   - {fileID: 1999779489361178438, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
@@ -210,7 +185,6 @@ MonoBehaviour:
   - {fileID: 7054441585288595629, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
   - {fileID: 7577558164117523207, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
   - {fileID: 7434196454575733728, guid: cc94953f25b14460c855c82238a54d1f, type: 3}
-  dying: 0
   timeToDie: 0.75
   squished: {fileID: 8300000, guid: 62abef7d9bc7dfb4386e94d7a15f2c2d, type: 3}
   monsterSpeed: 3
@@ -334,3 +308,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!58 &1551894514
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7729734792024811246}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.017284691, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.46302542

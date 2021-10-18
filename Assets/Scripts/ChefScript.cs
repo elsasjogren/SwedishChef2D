@@ -6,11 +6,12 @@ public class ChefScript : CharacterInheritance
 {
     [SerializeField] float speed;
     [SerializeField] float jumpForce;
+    [SerializeField] float bounceForce;
     [SerializeField] float airSpeedReduction = 0.8f;
     [SerializeField] Sprite[] walking = new Sprite[4];
 
     // true if walked last update
-    [SerializeField] bool inMotion = false;
+    public bool inMotion = false;
     [SerializeField] Sprite idle;
     [SerializeField] float hurtTime = 1.5f;
     [SerializeField] AnimationCurve blink;
@@ -38,13 +39,14 @@ public class ChefScript : CharacterInheritance
         }
     }
 
+    // take keyboard input to move the player
     private void Move()
     {
-        // get horizontal input to determine motion
+        // get horizontal input to determine direction of motion
         float movementHorizontal = 0;
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            mySpriteRenderer.flipX = true;
+            mySpriteRenderer.flipX = true; // flip sprite to face in direction of motion
             movementHorizontal = -speed;
         }
         else if (Input.GetKey(KeyCode.RightArrow))
@@ -59,10 +61,17 @@ public class ChefScript : CharacterInheritance
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
         }
 
+        // if the pushed direction vector is greater than zero, move the player
+        if(pushed.magnitude > 0)
+        {
+            rb2d.velocity = -pushed.normalized*bounceForce;
+            pushed = Vector3.zero;
+        }
+
         // reduce airspeed
         if (!isGrounded)
         {
-            movementHorizontal = movementHorizontal * airSpeedReduction;
+            movementHorizontal *= airSpeedReduction;
         }
 
         // animate if moving, stop if not
@@ -71,7 +80,7 @@ public class ChefScript : CharacterInheritance
             mySpriteRenderer.sprite = idle;
             inMotion = false;
 
-        } else { // is in motion
+        } else {
             if (!inMotion) // start animation again, if was still
             {
                 inMotion = true;
@@ -83,7 +92,8 @@ public class ChefScript : CharacterInheritance
         rb2d.velocity = new Vector2(movementHorizontal, rb2d.velocity.y);
     }
 
-    protected override void Hurt(Vector3 impactDirection)
+    // hurt character depending on the direction of the damage
+    protected override void Hurt(Vector3 impactDirection, bool wasAirborne)
     {
         if (Mathf.Abs(impactDirection.x) > Mathf.Abs(impactDirection.y))
         {
@@ -98,8 +108,10 @@ public class ChefScript : CharacterInheritance
         
     }
 
+    // damage character
     protected override void TakeDamage()
     {
+        // only hurt if currently not already hurt
         if(!isHurting)
         {
             UIScript.Damaged();
@@ -107,7 +119,6 @@ public class ChefScript : CharacterInheritance
             StartCoroutine(Hurting(hurtTime));
         }
     }
-
 
     // animate the walking with timePerFrame seconds between each frame
     protected override IEnumerator walkingAnimation(float timePerFrame)

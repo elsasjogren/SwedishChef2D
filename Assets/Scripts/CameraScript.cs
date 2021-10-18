@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    [SerializeField] GameObject Player;
+    [SerializeField] GameObject Player; // reference to player
+
+    // bounds for the camera position
     [SerializeField] float minX;
     [SerializeField] float maxX;
     [SerializeField] float minY;
@@ -13,12 +13,14 @@ public class CameraScript : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        // set camera to left most position
         transform.position = new Vector3(minX, Player.transform.position.y, -10);
     }
 
     // Update is called once per frame
     void Update()
     {
+        // follow the player unless player exceeds bounds
         if(Player.transform.position.x > minX && transform.position.x < maxX && Player.transform.position.y > minY && transform.position.y < maxY)
         {
             transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y, -10);
@@ -46,10 +48,12 @@ public class CameraScript : MonoBehaviour
                 newY = maxY;
             }
 
+            // set new position depending on location relative to bounds
             transform.position = new Vector3(newX, newY, -10);
         }
     }
 
+    // draw bounding box
     private void OnDrawGizmosSelected()
     {
         Vector3 bottomleft = new Vector3(minX, minY, -1);

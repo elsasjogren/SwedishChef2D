@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Grounded : MonoBehaviour
 {
-    GameObject character;
-    CharacterInheritance groundedChar;
+    GameObject character; // access character that can be grounded
+    CharacterInheritance groundedChar; // script of character
     
     void Start()
     {
@@ -14,7 +14,7 @@ public class Grounded : MonoBehaviour
         groundedChar = character.GetComponent<CharacterInheritance>();
     }
 
-    // check if the grounded object has passed through/out of ground
+    // check if the grounded object has passed in to/out of ground
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.CompareTag("Ground"))

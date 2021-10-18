@@ -5,27 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class MonsterScript : CharacterInheritance
 {
-    [SerializeField] Sprite[] movingSprite = new Sprite[5];
-    [SerializeField] Sprite[] destroySprite = new Sprite[7];
-    [SerializeField] float timeToDie;
-    [SerializeField] AudioClip squished;
+    // animation vars
+    [SerializeField] Sprite[] movingSprite = new Sprite[5]; // moving flipbook
+    [SerializeField] Sprite[] destroySprite = new Sprite[7]; // dying flipbook
+    [SerializeField] float timeToDie; // length dying animation takes
+    [SerializeField] AudioClip squished; // sound when stepped on
 
     // motion vars
     [SerializeField] float monsterSpeed;
-    [SerializeField] float range;
-    private float maxPos;
-    private float minPos;
-    private Vector3 startPos;
-    private int directionMonster = 1;
+    [SerializeField] float range; // length monster can move
+    private float maxPos; // right most possible position
+    private float minPos; // left most possible position
+    private Vector3 startPos; // pos on game start
+    private int directionMonster = 1; // positive if moving right, negative if left
 
-    [SerializeField] bool holdingPastry;
-    [SerializeField] GameObject pastry;
+    // dropping items
+    [SerializeField] bool holdingPastry; // true if will drop pastry on death
+    [SerializeField] GameObject pastry; // prefab to instatiate on death
 
     private SpriteRenderer mySpriteRenderer;
     private AudioSource myaudio;
 
     void Start()
     {
+        // init vars
         rb2d = GetComponent<Rigidbody2D>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
         myaudio = GetComponent<AudioSource>();
@@ -38,25 +41,27 @@ public class MonsterScript : CharacterInheritance
 
     void Update()
     {
+        // move back and forth
         Vector2 vel = rb2d.velocity;
         vel.x = monsterSpeed * directionMonster;
         rb2d.velocity = vel;
-        monsterDirection();
+        monsterDirection(); // update direction
     }
 
+    // determine direction of the monster motion/sprite
     void monsterDirection()
     {
         //define a space within the monster can run and if he hits on edge turn and go the other way
         if (transform.position.x > maxPos)
         {
-            directionMonster = -1;
             //turn left
+            directionMonster = -1;
             mySpriteRenderer.flipX = true;
         }
         if (transform.position.x < minPos)
         {
-            directionMonster = 1;
             //turn right
+            directionMonster = 1;
             mySpriteRenderer.flipX = false;
         }
     }
@@ -67,22 +72,24 @@ public class MonsterScript : CharacterInheritance
         // go through sprites
         for (int i = 0; i < movingSprite.Length; i++)
         {
-            if(isHurting) yield break;
+            if(isHurting) yield break; // stop walking if dying
             yield return new WaitForSeconds(timePerFrame);
             mySpriteRenderer.sprite = movingSprite[i];
         }
 
-        if(!isHurting)
+        if(!isHurting) // if not dying, keep walking
         {
             StartCoroutine(walkingAnimation(timePerFrame));
         }
         
     }
 
+    // animate the death for timeToDie seconds
     private IEnumerator dyingAnimation(float timeToDie)
     {
-
+        // play sound when stepped on
         myaudio.PlayOneShot(squished);
+        
         // go through sprites
         for (int i = 0; i < destroySprite.Length; i++)
         {
@@ -90,7 +97,7 @@ public class MonsterScript : CharacterInheritance
             mySpriteRenderer.sprite = destroySprite[i];
         }
 
-        // drop the pastry
+        // drop the pastry, if it was holding one
         if (holdingPastry)
         {
             // make invisible and delay destruction to allow spawning
@@ -99,18 +106,20 @@ public class MonsterScript : CharacterInheritance
             yield return new WaitForSeconds(1.0f);
         }
 
+        // kill it
         Destroy(gameObject);
     }
 
-    protected override void Hurt(Vector3 impactDirection)
+    // 
+    protected override void Hurt(Vector3 impactDirection, bool wasAirborne)
     {
-        if (Mathf.Abs(impactDirection.x) > Mathf.Abs(impactDirection.y)) //if the player collides with the enemy from the side
+        //if the player collides with the enemy from the side
+        if (Mathf.Abs(impactDirection.x) > Mathf.Abs(impactDirection.y)) 
         {
             directionMonster = (int)Mathf.Sign(-impactDirection.x); //change the monsters direction so he will contantly attack the player 
-        }
-        else
-        {
-            if (impactDirection.y > 0.0f) // if the collision comes from the top of the monster(i.e. monster is jumped on)
+        } else {
+            // if the collision comes from the top of the monster(i.e. monster is jumped on)
+            if (wasAirborne) 
             {
                 TakeDamage();
             }
@@ -119,15 +128,15 @@ public class MonsterScript : CharacterInheritance
     // kill monster if damage is taken
     protected override void TakeDamage() {
         isHurting = true;
-        monsterSpeed = 0;
-        Vector3 currPos = transform.position;
-        rb2d.simulated = false;
-        StartCoroutine(dyingAnimation(timeToDie));
+        monsterSpeed = 0; // stop moving
+        rb2d.simulated = false; // prevent collision with dying monster
+        StartCoroutine(dyingAnimation(timeToDie)); // begin death
     }
     
-    //called if you have selected the game object in editor
+    // show the line that monster will walk along
     private void OnDrawGizmosSelected()
     {
+        //called if you have selected the game object in editor
         maxPos = transform.position.x + range / 2;
         minPos = transform.position.x - range / 2;
 
