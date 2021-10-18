@@ -19,7 +19,7 @@ public class UIScript : MonoBehaviour
 
     // life vars
     static public int hearts = 3; // number of hits
-    public Image[] lives = new Image[hearts]; // heart icons
+    public Image[] lives = new Image[hearts]; // heart icons, getting an overflow exception?
     public Sprite halfFullHeart; 
     public Sprite emptyHeart;
 
@@ -70,11 +70,10 @@ public class UIScript : MonoBehaviour
     private void _Damaged()
     {
         hearts--;
-
         // make heart an empty heart sprite after taking damage
-        lives[hearts].sprite = emptyHeart;
+        lives[hearts].sprite = emptyHeart;//getting an index out of bounds exception here when he encounters monsters after first monster encounter
 
-        if (hearts == 0)
+        if (hearts == 0) //reset, game lost
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
