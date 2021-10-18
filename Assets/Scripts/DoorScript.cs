@@ -17,6 +17,7 @@ public class DoorScript : MonoBehaviour
     private Transform doorTop;
     private Transform speechBubble;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,4 +78,11 @@ public class DoorScript : MonoBehaviour
         chefScript.movement = true;
         chefRenderer.flipX = false;
     }
+
+    public void playerSucceds() {
+        Transform winBubble = transform.GetChild(2);
+        winBubble.gameObject.transform.position = player.transform.position;
+        winBubble.gameObject.SetActive(true);
+    }
+
 }
